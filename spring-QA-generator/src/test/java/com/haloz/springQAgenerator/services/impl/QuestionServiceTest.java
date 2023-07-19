@@ -15,8 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @ExtendWith(MockitoExtension.class)
-class JavaQuestionServiceTest {
-
+class QuestionServiceTest {
     private Question question;
     private QuestionService questionService;
     @Mock

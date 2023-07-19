@@ -2,20 +2,19 @@ package com.haloz.springQAgenerator.controllers;
 
 import com.haloz.springQAgenerator.entities.Question;
 import com.haloz.springQAgenerator.services.api.QuestionService;
-import com.haloz.springQAgenerator.services.impl.JavaQuestionService;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
-// /exam?
 @RestController
-@RequestMapping("/java")
+@RequestMapping("/exam/java")
 public class JavaQuestionController {
     private final QuestionService questionService;
 
-    public JavaQuestionController(JavaQuestionService questionService) {
+    public JavaQuestionController(@Qualifier("javaQuestionService") QuestionService questionService) {
         this.questionService = questionService;
     }
 

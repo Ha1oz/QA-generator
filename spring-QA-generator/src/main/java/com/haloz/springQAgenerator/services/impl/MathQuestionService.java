@@ -5,12 +5,11 @@ import com.haloz.springQAgenerator.services.api.QuestionService;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
-
 @Service
-@Qualifier("javaQuestionService")
-public class JavaQuestionService extends QuestionService {
-    private static final String JAVA_SECTION = "Java";
-    public JavaQuestionService(QuestionRepository questionRepository) {
-        super(questionRepository, JAVA_SECTION);
+@Qualifier("mathQuestionService")
+public class MathQuestionService extends QuestionService {
+    private static final String MATH_SECTION = "Math";
+    public MathQuestionService(QuestionRepository questionRepository) {
+        super(questionRepository, MATH_SECTION);
     }
 }
