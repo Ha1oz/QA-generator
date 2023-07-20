@@ -2,6 +2,7 @@ package com.haloz.springQAgenerator.handler;
 
 import com.haloz.springQAgenerator.exceptions.QuestionIsAddedException;
 import com.haloz.springQAgenerator.exceptions.QuestionIsNotFoundException;
+import com.haloz.springQAgenerator.exceptions.QuestionMethodIsNotAllowedException;
 import com.haloz.springQAgenerator.exceptions.SectionIsNotFoundException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -33,5 +34,10 @@ public class QAExceptionHandler {
     public ResponseEntity<Object> handleSectionIsNotFoundException(SectionIsNotFoundException e) {
         LOGGER.error(e.toString());
         return new ResponseEntity<>("Section is not found. Try again.", HttpStatus.BAD_REQUEST);
+    }
+    @ExceptionHandler(QuestionMethodIsNotAllowedException.class)
+    public ResponseEntity<Object> handleQuestionMethodIsNotAllowedException(QuestionMethodIsNotAllowedException e) {
+        LOGGER.error(e.toString());
+        return new ResponseEntity<>("Method is forbidden.", HttpStatus.METHOD_NOT_ALLOWED);
     }
 }

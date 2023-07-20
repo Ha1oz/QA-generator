@@ -6,35 +6,26 @@ import com.haloz.springQAgenerator.services.api.ExaminerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 @Service
 public class ExaminerServiceImpl implements ExaminerService {
-    private final Random random;
     @Autowired
     private QuestionServiceFactory questionServiceFactory;
 
     public ExaminerServiceImpl(QuestionServiceFactory questionServiceFactory) {
-        this.random = new Random();
         this.questionServiceFactory = questionServiceFactory;
     }
     @Override
-    public List<Question> getQuestions(String type, int amount) {
-        List<Question> buff = questionServiceFactory.getQuestionService(type).getAllQuestions();
+    public Set<Question> getQuestions(String type, int amount) {
+        return getRandomQuestions(type, amount);
+    }
 
-        if(amount > buff.size() || amount < 0) {
-            throw new ArrayIndexOutOfBoundsException();
+    private Set<Question> getRandomQuestions(String type, int amount) {
+        Set<Question> questionSet = new HashSet<>();
+        while (questionSet.size() != amount) {
+            questionSet.add(questionServiceFactory.getQuestionService(type).getRandomQuestion());
         }
-        List<Question> res = new ArrayList<>();
-
-        for (int i = 0; i < amount; i++) {
-            int randomIndex = random.nextInt(buff.size());
-            res.add(buff.get(randomIndex));
-            buff.remove(randomIndex);
-        }
-
-        return res;
+        return questionSet;
     }
 }

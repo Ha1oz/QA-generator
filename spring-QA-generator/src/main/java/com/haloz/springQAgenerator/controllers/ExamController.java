@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.List;
+import java.util.Set;
 
 @RestController
 @RequestMapping(value = "/exam")
@@ -22,7 +22,7 @@ public class ExamController {
 
     @GetMapping("/{type}/get/{amount}")
     @NonNull
-    public List<Question> getJavaQuestions(@PathVariable String type, @PathVariable Integer amount) {
+    public Set<Question> getJavaQuestions(@PathVariable String type, @PathVariable Integer amount) {
         return examinerService.getQuestions(type, amount);
     }
 }
