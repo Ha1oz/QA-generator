@@ -1,15 +1,13 @@
-package com.haloz.springQAgenerator.services.impl;
+package com.haloz.springQAgenerator.services.impl.ques;
 
 import com.haloz.springQAgenerator.repo.QuestionRepository;
-import com.haloz.springQAgenerator.services.api.QuestionService;
-import org.springframework.beans.factory.annotation.Qualifier;
+import com.haloz.springQAgenerator.services.api.ques.QuestionService;
 import org.springframework.stereotype.Service;
 
 
 @Service
-@Qualifier("javaQuestionService")
 public class JavaQuestionService extends QuestionService {
-    private static final String JAVA_SECTION = "Java";
+    private static final String JAVA_SECTION = "java";
     public JavaQuestionService(QuestionRepository questionRepository) {
         super(questionRepository, JAVA_SECTION);
     }

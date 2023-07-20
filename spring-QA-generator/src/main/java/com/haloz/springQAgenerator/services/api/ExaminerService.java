@@ -5,5 +5,5 @@ import com.haloz.springQAgenerator.entities.Question;
 import java.util.List;
 
 public interface ExaminerService {
-    List<Question> getQuestions(int amount);
+    List<Question> getQuestions(String type, int amount);
 }

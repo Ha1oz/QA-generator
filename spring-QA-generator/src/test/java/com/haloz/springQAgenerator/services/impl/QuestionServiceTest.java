@@ -2,7 +2,8 @@ package com.haloz.springQAgenerator.services.impl;
 
 import com.haloz.springQAgenerator.entities.Question;
 import com.haloz.springQAgenerator.repo.QuestionRepository;
-import com.haloz.springQAgenerator.services.api.QuestionService;
+import com.haloz.springQAgenerator.services.api.ques.QuestionService;
+import com.haloz.springQAgenerator.services.impl.ques.JavaQuestionService;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
