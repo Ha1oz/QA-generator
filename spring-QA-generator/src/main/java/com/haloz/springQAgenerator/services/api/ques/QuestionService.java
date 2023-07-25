@@ -1,4 +1,4 @@
-package com.haloz.springQAgenerator.services.api;
+package com.haloz.springQAgenerator.services.api.ques;
 
 import com.haloz.springQAgenerator.entities.Question;
 import com.haloz.springQAgenerator.repo.QuestionRepository;
@@ -37,5 +37,8 @@ public abstract class QuestionService {
         List<Question> questions = questionRepository.getAll(section);
 
         return questions.get(random.nextInt(questions.size()));
+    }
+    public String getSection() {
+        return section;
     }
 }

@@ -2,8 +2,8 @@ package com.haloz.springQAgenerator.services.api;
 
 import com.haloz.springQAgenerator.entities.Question;
 
-import java.util.List;
+import java.util.Set;
 
 public interface ExaminerService {
-    List<Question> getQuestions(int amount);
+    Set<Question> getQuestions(String type, int amount);
 }

@@ -1,40 +1,31 @@
 package com.haloz.springQAgenerator.services.impl;
 
 import com.haloz.springQAgenerator.entities.Question;
+import com.haloz.springQAgenerator.services.QuestionServiceFactory;
 import com.haloz.springQAgenerator.services.api.ExaminerService;
-import com.haloz.springQAgenerator.services.api.QuestionService;
-import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 @Service
 public class ExaminerServiceImpl implements ExaminerService {
-    private final Random random;
-    private final QuestionService questionService;
+    @Autowired
+    private QuestionServiceFactory questionServiceFactory;
 
-    public ExaminerServiceImpl(@Qualifier("javaQuestionService") QuestionService questionService) {
-        this.random = new Random();
-        this.questionService = questionService;
+    public ExaminerServiceImpl(QuestionServiceFactory questionServiceFactory) {
+        this.questionServiceFactory = questionServiceFactory;
+    }
+    @Override
+    public Set<Question> getQuestions(String type, int amount) {
+        return getRandomQuestions(type, amount);
     }
 
-    @Override
-    public List<Question> getQuestions(int amount) {
-        List<Question> buff = questionService.getAllQuestions();
-
-        if(amount > buff.size() || amount < 0) {
-            throw new ArrayIndexOutOfBoundsException();
+    private Set<Question> getRandomQuestions(String type, int amount) {
+        Set<Question> questionSet = new HashSet<>();
+        while (questionSet.size() != amount) {
+            questionSet.add(questionServiceFactory.getQuestionService(type).getRandomQuestion());
         }
-        List<Question> res = new ArrayList<>();
-
-        for (int i = 0; i < amount; i++) {
-            int randomIndex = random.nextInt(buff.size());
-            res.add(buff.get(randomIndex));
-            buff.remove(randomIndex);
-        }
-
-        return res;
+        return questionSet;
     }
 }
